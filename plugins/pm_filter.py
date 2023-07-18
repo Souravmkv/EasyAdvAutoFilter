@@ -1801,10 +1801,11 @@ async def auto_filter(client, msg, spoll=False):
             return
         if len(message.text) < 100:
             search = message.text
-            s=await message.reply_sticker("CAACAgIAAxkBAAECtcVktT1nnSIDQxFolMoMZkBb-7BUKwACaAEAAhAabSL1Nxwp9hekbx4E") 
-            m=await message.reply_text(f"<b><i> 𝖲𝖾𝖺𝗋𝖼𝗁𝗂𝗇𝗀 𝖿𝗈𝗋 '{search}' 🔎</i></b>")
-            # await asyncio.sleep(2)
-            # await s.delete()
+            btn = [[
+                    InlineKeyboardButton(f"Searching  🔍  for {search}", callback_data=f"close_data")
+                    ]]
+            dlt = await message.reply_sticker('CAACAgIAAxkBAAEJsj9ksnMy2J79ogEmayN3mWOKMj2UgAACYgEAAj0N6AQb5sCBchFveC8E', reply_markup=InlineKeyboardMarkup(btn))
+            await dlt.delete()
             search = search.lower()
             find = search.split(" ")
             search = ""
@@ -1836,7 +1837,10 @@ async def auto_filter(client, msg, spoll=False):
     else:
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
-        m=await message.reply_text(f"<b><i> 𝖲𝖾𝖺𝗋𝖼𝗁𝗂𝗇𝗀 𝖿𝗈𝗋 '{search}' 🔎</i></b>")
+        btn = [[
+                InlineKeyboardButton(f"Searching  🔍  for {search}", callback_data=f"close_data")
+                ]]
+        dlt = await message.reply_sticker('CAACAgIAAxkBAAEJsj9ksnMy2J79ogEmayN3mWOKMj2UgAACYgEAAj0N6AQb5sCBchFveC8E', reply_markup=InlineKeyboardMarkup(btn))
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
     # if 'is_shortlink' in settings.keys():
