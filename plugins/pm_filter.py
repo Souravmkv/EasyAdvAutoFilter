@@ -1824,7 +1824,6 @@ async def auto_filter(client, msg, spoll=False):
             settings = await get_settings(message.chat.id)
             if not files:
                 await dlt.delete()
-                await m.delete()
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
                 else:
@@ -2026,7 +2025,6 @@ async def auto_filter(client, msg, spoll=False):
     # else:
     fuk = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
     await dlt.delete()
-    await m.delete()
     try:
         if settings['auto_delete']:
             await asyncio.sleep(300)
