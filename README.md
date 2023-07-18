@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://telegra.ph/file/c0c347379996b9606b374.jpg" alt="PM-Shortner-Bot Logo">
+  <img src="https://graph.org/file/1356905fa52fe4aa3ba7d.jpg" alt="YDNewAuto-Bot Logo">
 </p>
 <h1 align="center">
   PM-Shortner-Bot
@@ -112,7 +112,7 @@
 <details><summary>Deploy To Heroku</summary>
 <p>
 <br>
-<a href="https://heroku.com/deploy?template=https://github.com/Moviesbotz/Auto-filter-Urlshortener-All">
+<a href="https://heroku.com/deploy?template=https://github.com/spidyynaik/YDNewAuto">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy To Heroku">
 </a>
 </p>
