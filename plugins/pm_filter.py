@@ -1822,7 +1822,6 @@ async def auto_filter(client, msg, spoll=False):
             search = search.replace(":","")
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
-            await s.delete()
             if not files:
                 await dlt.delete()
                 await m.delete()
