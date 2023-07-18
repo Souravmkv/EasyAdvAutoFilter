@@ -1805,7 +1805,6 @@ async def auto_filter(client, msg, spoll=False):
                     InlineKeyboardButton(f"Searching  🔍  for {search}", callback_data=f"close_data")
                     ]]
             dlt = await message.reply_sticker('CAACAgIAAxkBAAEJsj9ksnMy2J79ogEmayN3mWOKMj2UgAACYgEAAj0N6AQb5sCBchFveC8E', reply_markup=InlineKeyboardMarkup(btn))
-            await dlt.delete()
             search = search.lower()
             find = search.split(" ")
             search = ""
