@@ -201,7 +201,7 @@ Tɪᴘ: Sᴇʟᴇᴄᴛ "Lᴀɴɢᴜᴀɢᴇs" ᴏʀ "Sᴇᴀsᴏɴs" Bᴜᴛᴛ
     CAPTION = """
 <b>📂 Fɪʟᴇ ɴᴀᴍᴇ : {file_name}
 ════════※ ·❆· ※════════
-▫️ Cʜᴀɴɴᴇʟ : <a href="https://t.me/YourDemandZone">𝐘𝐃𝐙𝐨𝐧𝐞</a>
+▫️ Mᴀɪɴ Cʜᴀɴɴᴇʟ : <a href="https://t.me/YourDemandZone">𝐘𝐃𝐙𝐨𝐧𝐞</a>
 ▫️ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ : <a href="https://t.me/YourDemandSupport">𝐘𝐃𝐒𝐮𝐩𝐩𝐨𝐫𝐭</a>
 ════════※ ·❆· ※════════</b>""" 
 
