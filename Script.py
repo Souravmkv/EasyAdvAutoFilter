@@ -251,6 +251,36 @@ Aᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs:
 
 🌿 ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='t.me/Mr_SPIDY'>Mʀ.SPIDY🕷</a></b>"""
 
+    MODS_TXT = """Yᴏᴜ Cᴀɴ Tʀʏ Aʟʟ Tʜᴇsᴇ Cᴏᴏʟ Fᴇᴀᴛᴜʀᴇs Fʀᴏᴍ Bᴇʟᴏᴡ Oᴘᴛɪᴏɴ..!!!"""
+
+    STICKER_TXT = """<b>𝚈𝙾𝚄 𝙲𝙰𝙽 𝚄𝚂𝙴 𝚃𝙷𝙸𝚂 𝙼𝙾𝙳𝚄𝙻𝙴 𝚃𝙾 𝙵𝙸𝙽𝙳 𝙰𝙽𝚈 𝚂𝚃𝙸𝙲𝙺𝙴𝚁𝚂 𝙸𝙳.</b>
+• 𝐔𝐒𝐀𝐆𝐄
+To Get Sticker ID
+ 
+  ⭕ 𝙃𝙤𝙬 𝙏𝙤 𝙐𝙨𝙚
+ 
+◉ Reply To Any Sticker [/stickerid]"""
+
+
+    FONT_TXT= """⚙️ 𝐔𝐒𝐀𝐆𝐄
+
+𝐘𝐎𝐔 𝐂𝐀𝐍 𝐔𝐒𝐄 𝐓𝐇𝐈𝐒 𝐌𝐎𝐃𝐔𝐋𝐄 𝐓𝐎 𝐂𝐇𝐀𝐍𝐆𝐄 𝐅𝐎𝐍𝐓 𝐒𝐓𝐘𝐋𝐄 
+
+<b>COMMAND</b> : /font your text (optional)
+        <b> Eg:- /font Hello</b>
+
+ <i>This feature added by @YourDemandZone"""
+
+    TELE_TXT = """▫️Hᴇʟᴘ: ▪️ Tᴇʟᴇɢʀᴀᴘʜ ▪️
+     Tᴇʟᴇɢʀᴀᴘʜ Lɪɴᴋ Gᴇɴᴇʀᴀᴛᴏʀ
+    Usᴀɢᴇ
+    🤧 /telegraph - Sᴇɴᴅ Mᴇ Pʜᴏᴛᴏ Oʀ Vɪᴅᴇᴏ Uɴᴅᴇʀ(5ᴍʙ) Aɴᴅ Rᴇᴘʟʏ Wɪᴛʜ Cᴏᴍᴍᴀᴍɴᴅ"""
+
+    CON_TXT = """<b><u>ᴄᴏᴜɴᴛʀʏ ɪɴғᴏ</b></u>
+<b>Tʜɪs ᴍᴏᴅᴜʟᴇ ɪs ᴛᴏ ғɪɴᴅ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴄᴏᴜɴᴛʀɪᴇs</b>
+• /country [𝖼𝗈𝗎𝗇𝗍𝗋𝗒 𝗇𝖺𝗆𝖾] 
+𝖤𝗑𝖺𝗆𝗉𝗅𝖾 :- <code>/country India</code>"""
+
     RESTART_TXT = """
 <b>Bᴏᴛ Rᴇsᴛᴀʀᴛᴇᴅ !
 
