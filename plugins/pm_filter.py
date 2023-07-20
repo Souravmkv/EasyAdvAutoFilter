@@ -1805,16 +1805,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [[
                     InlineKeyboardButton("🍀 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🍀", url=GRP_LNK)
                 ],[
-                    InlineKeyboardButton("🌷 Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ Gʀᴏᴜᴘ 🌷", url=SUPPORT_CHAT)
-                ],[
-                    InlineKeyboardButton("🍂 YD Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ 🍂", url=SUPPORT_CHAT)
+                    InlineKeyboardButton("🍂 Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ Gʀᴏᴜᴘ 🍂", url=SUPPORT_CHAT)
                 ],[
                     InlineKeyboardButton("🌼 Mᴏᴠɪᴇ Cʜᴀɴɴᴇʟ🌼", url="t.me/YourDemand3")
                 ],[
-                    InlineKeyboardButton("🌐 Mᴀɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ 🌐", url=CHNL_LNK)
+                    InlineKeyboardButton("🥀 Mᴀɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ 🥀", url=CHNL_LNK)
                 ],[
                     InlineKeyboardButton('♙ Hᴏᴍᴇ', callback_data='start'),
                     InlineKeyboardButton('Cʟᴏsᴇ ⊝', callback_data='close_data')
+                ],[
+                    InlineKeyboardButton('❗❗ Dɪsᴄʟᴀɪᴍᴇʀ ❗❗', callback_data='dicl_btn')
                 ]]
             await client.edit_message_media(
                 query.message.chat.id, 
