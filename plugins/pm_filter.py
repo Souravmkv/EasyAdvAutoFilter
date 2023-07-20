@@ -1801,6 +1801,41 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
+    elif query.data == "chnl_info":
+            btn = [[
+                    InlineKeyboardButton("🌿 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🌿", url=GRP_LNK)
+                ],[
+                    InlineKeyboardButton("🥀 Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ Gʀᴏᴜᴘ 🥀", url=SUPPORT_CHAT)
+                ],[
+                    InlineKeyboardButton("🍀 YD Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ 🍀", url=SUPPORT_CHAT)
+                ],[
+                    InlineKeyboardButton("🌼 Mᴏᴠɪᴇ Cʜᴀɴɴᴇʟ🌼", url="t.me/YourDemand3")
+                ],[
+                    InlineKeyboardButton("🌐Mᴀɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ🌐", url=CHNL_LNK)
+                ]]
+            await client.edit_message_media(
+                query.message.chat.id, 
+                query.message.id, 
+                InputMediaPhoto("https://graph.org/file/1f8329497fc99cf66d9dd.jpg")
+            )
+            reply_markup = InlineKeyboardMarkup(btn)
+            await query.message.edit_text(
+                text="▣☐☐"
+            )
+            await asyncio.sleep(0.3)
+            await query.message.edit_text(
+                text="▣☐☐"
+            )
+            await asyncio.sleep(0.3)
+            await query.message.edit_text(
+                text="▣☐☐"
+            )
+            reply_markup = InlineKeyboardMarkup(btn)
+            await query.message.edit_text(
+                text=(script.CHNL_INFO),
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )
     elif query.data == "dicl_btn":
         buttons = [[
             InlineKeyboardButton('⇍ ʙᴀᴄᴋ ⇏', callback_data='about')
