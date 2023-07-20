@@ -1827,11 +1827,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             await asyncio.sleep(0.3)
             await query.message.edit_text(
-                text="▣☐☐"
+                text="▣▣☐"
             )
             await asyncio.sleep(0.3)
             await query.message.edit_text(
-                text="▣☐☐"
+                text="▣▣▣"
             )
             reply_markup = InlineKeyboardMarkup(btn)
             await query.message.edit_text(
