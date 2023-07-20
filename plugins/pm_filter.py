@@ -1812,6 +1812,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton("🌼 Mᴏᴠɪᴇ Cʜᴀɴɴᴇʟ🌼", url="t.me/YourDemand3")
                 ],[
                     InlineKeyboardButton("🌐Mᴀɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ🌐", url=CHNL_LNK)
+                ],[
+                    InlineKeyboardButton('♙ Hᴏᴍᴇ', callback_data='start'),
+                    InlineKeyboardButton('Cʟᴏsᴇ ⊝', callback_data='close_data')
                 ]]
             await client.edit_message_media(
                 query.message.chat.id, 
