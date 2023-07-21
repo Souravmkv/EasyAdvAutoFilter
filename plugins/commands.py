@@ -237,19 +237,21 @@ async def start(client, message):
         token = data.split("-", 3)[2]
         if str(message.from_user.id) != str(userid):
             return await message.reply_text(
-                text="<b>Invalid link or Expired link !</b>",
+                text="<b>Iɴᴠᴀʟɪᴅ Lɪɴᴋ ᴏʀ Exᴘɪʀᴇᴅ Lɪɴᴋ !</b>",
                 protect_content=True
             )
+        photo2url = "https://graph.org/file/9cea98695ef1343e4f627.jpg",
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
-            await message.reply_text(
-                text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies till today midnight.</b>",
+            await message.reply_photo(
+                photo = photo2url,
+                caption ="<b>ʜᴇʏ {message.from_user.mention},ʏᴏᴜ ᴀʀᴇ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ !\ɴɴᴏᴡ ʏᴏᴜ ʜᴀᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇss ғᴏʀ ᴀʟʟ ᴍᴏᴠɪᴇs ᴛɪʟʟ ᴛᴏᴅᴀʏ ᴍɪᴅɴɪɢʜᴛ.</b>",
                 protect_content=True
             )
             await verify_user(client, userid, token)
         else:
             return await message.reply_text(
-                text="<b>Invalid link or Expired link !</b>",
+                text="<b>Iɴᴠᴀʟɪᴅ Lɪɴᴋ ᴏʀ Exᴘɪʀᴇᴅ Lɪɴᴋ !</b>",
                 protect_content=True
             )
     if data.startswith("sendfiles"):
@@ -274,7 +276,7 @@ async def start(client, message):
             )
         )
         await asyncio.sleep(300)
-        await k.edit("<b>Your message is successfully deleted!!!</b>")
+        await k.edit("<b>Yᴏᴜʀ ᴍᴇssᴀɢᴇ ɪs sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ!!!</b>")
         return
         
     
@@ -295,13 +297,13 @@ async def start(client, message):
             )
         )
         await asyncio.sleep(1200)
-        await k.edit("<b>Your message is successfully deleted!!!</b>")
+        await k.edit("<b>Yᴏᴜʀ ᴍᴇssᴀɢᴇ ɪs sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ!!!</b>")
         return
         
     elif data.startswith("all"):
         files = temp.GETALL.get(file_id)
         if not files:
-            return await message.reply('<b><i>No such file exist.</b></i>')
+            return await message.reply('<b><i>Nᴏ Sᴜᴄʜ Fɪʟᴇ Eᴇxɪsᴛ.</b></i>')
         filesarr = []
         for file in files:
             file_id = file.file_id
@@ -320,11 +322,13 @@ async def start(client, message):
                 f_caption = f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1.file_name.split()))}"
             if not await check_verification(client, message.from_user.id) and VERIFY == True:
                 btn = [[
-                    InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
-                    InlineKeyboardButton("Hᴏᴡ Tᴏ Vᴇʀɪғʏ", url=HOW_TO_VERIFY)
-                ]]
-                await message.reply_text(
-                    text="<b>You are not verified !\nKindly verify to continue !</b>",
+                        InlineKeyboardButton("♻️ Vᴇʀɪғʏ ♻️", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
+                        InlineKeyboardButton("⚠️ Hᴏᴡ Tᴏ Vᴇʀɪғʏ ⚠️", url=HOW_TO_VERIFY)
+                        ]]
+                photo_url = "https://graph.org/file/10f9dac6eab3247e35831.jpg"
+                await message.reply_photo(
+                    photo = photo_url,
+                    caption=script.VERIFY_TXT,
                     protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn)
                 )
@@ -375,7 +379,7 @@ async def start(client, message):
                 )
             )
             await asyncio.sleep(1200)
-            await k.edit("<b>Your message is successfully deleted!!!</b>")
+            await k.edit("<b>Yᴏᴜʀ ᴍᴇssᴀɢᴇ ɪs sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ!!!</b>")
             return
     user = message.from_user.id
     files_ = await get_file_details(file_id)           
@@ -384,11 +388,13 @@ async def start(client, message):
         try:
             if not await check_verification(client, message.from_user.id) and VERIFY == True:
                 btn = [[
-                    InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
-                    InlineKeyboardButton("Hᴏᴡ Tᴏ Vᴇʀɪғʏ", url=HOW_TO_VERIFY)
+                    InlineKeyboardButton("♻️ Vᴇʀɪғʏ ♻️", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
+                    InlineKeyboardButton("⚠️ Hᴏᴡ Tᴏ Vᴇʀɪғʏ ⚠️", url=HOW_TO_VERIFY)
                 ]]
-                await message.reply_text(
-                    text="<b>You are not verified !\nKindly verify to continue !</b>",
+                photo_url = "https://graph.org/file/10f9dac6eab3247e35831.jpg"
+                await message.reply_photo(
+                    photo = photo_url,
+                    caption=script.VERIFY_TXT,
                     protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn)
                 )
@@ -429,7 +435,7 @@ async def start(client, message):
             return
         except:
             pass
-        return await message.reply('No such file exist.')
+        return await message.reply('Nᴏ Sᴜᴄʜ Fɪʟᴇ Eᴇxɪsᴛ.')
     files = files_[0]
     title = '@YDZone ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
     size=get_size(files.file_size)
@@ -444,11 +450,13 @@ async def start(client, message):
         f_caption = f"@YDZone {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}"
     if not await check_verification(client, message.from_user.id) and VERIFY == True:
         btn = [[
-            InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
-            InlineKeyboardButton("Hᴏᴡ Tᴏ Vᴇʀɪғʏ", url=HOW_TO_VERIFY)
-        ]]
-        await message.reply_text(
-            text="<b>You are not verified !\nKindly verify to continue !</b>",
+                InlineKeyboardButton("♻️ Vᴇʀɪғʏ ♻️", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
+                InlineKeyboardButton("⚠️ Hᴏᴡ Tᴏ Vᴇʀɪғʏ ⚠️", url=HOW_TO_VERIFY)
+                ]]
+        photo_url = "https://graph.org/file/10f9dac6eab3247e35831.jpg"
+        await message.reply_photo(
+            photo = photo_url,
+            caption=script.VERIFY_TXT,
             protect_content=True,
             reply_markup=InlineKeyboardMarkup(btn)
         )
