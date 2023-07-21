@@ -2,6 +2,7 @@ import os
 import logging
 import random
 import asyncio
+import requests
 from Script import script
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired, FloodWait
@@ -240,11 +241,13 @@ async def start(client, message):
                 text="<b>Iɴᴠᴀʟɪᴅ Lɪɴᴋ ᴏʀ Exᴘɪʀᴇᴅ Lɪɴᴋ !</b>",
                 protect_content=True
             )
-        photo2url = "https://graph.org/file/9cea98695ef1343e4f627.jpg",
+        photo2url = "https://graph.org/file/9cea98695ef1343e4f627.jpg"
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
+            photo_response = requests.get(photo2url)
+            photo_bytes = photo_response.content
             await message.reply_photo(
-                photo = photo2url,
+                photo=photo_bytes,
                 caption = script.VERIFED_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
                 # protect_content=True
             )
