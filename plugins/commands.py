@@ -329,7 +329,7 @@ async def start(client, message):
                 await message.reply_photo(
                     photo = photo_url,
                     caption=script.VERIFY_TXT,
-                    protect_content=True,
+                    # protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn)
                 )
                 return
@@ -395,7 +395,7 @@ async def start(client, message):
                 await message.reply_photo(
                     photo = photo_url,
                     caption=script.VERIFY_TXT,
-                    protect_content=True,
+                    # protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn)
                 )
                 return
@@ -457,7 +457,7 @@ async def start(client, message):
         await message.reply_photo(
             photo = photo_url,
             caption=script.VERIFY_TXT,
-            protect_content=True,
+            # protect_content=True,
             reply_markup=InlineKeyboardMarkup(btn)
         )
         return
