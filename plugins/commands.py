@@ -243,7 +243,8 @@ async def start(client, message):
         photo2url = "https://graph.org/file/9cea98695ef1343e4f627.jpg",
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
-            await message.reply_photo(
+            await client.send_photo(
+                chat_id=message.chat.id,
                 photo = photo2url,
                 caption ="<b>ʜᴇʏ {message.from_user.mention},ʏᴏᴜ ᴀʀᴇ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ !\ɴɴᴏᴡ ʏᴏᴜ ʜᴀᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇss ғᴏʀ ᴀʟʟ ᴍᴏᴠɪᴇs ᴛɪʟʟ ᴛᴏᴅᴀʏ ᴍɪᴅɴɪɢʜᴛ.</b>",
                 # protect_content=True
@@ -252,7 +253,7 @@ async def start(client, message):
         else:
             return await message.reply_text(
                 text="<b>Iɴᴠᴀʟɪᴅ Lɪɴᴋ ᴏʀ Exᴘɪʀᴇᴅ Lɪɴᴋ !</b>",
-                protect_content=True
+                # protect_content=True
             )
     if data.startswith("sendfiles"):
         chat_id = int("-" + file_id.split("-")[1])
