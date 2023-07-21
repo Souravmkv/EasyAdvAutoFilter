@@ -243,10 +243,9 @@ async def start(client, message):
         photo2url = "https://graph.org/file/9cea98695ef1343e4f627.jpg",
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
-            await client.send_photo(
-                chat_id=message.chat.id,
+            await message.reply_photo(
                 photo = photo2url,
-                caption ="<b>ʜᴇʏ {message.from_user.mention},ʏᴏᴜ ᴀʀᴇ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ !\ɴɴᴏᴡ ʏᴏᴜ ʜᴀᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇss ғᴏʀ ᴀʟʟ ᴍᴏᴠɪᴇs ᴛɪʟʟ ᴛᴏᴅᴀʏ ᴍɪᴅɴɪɢʜᴛ.</b>",
+                caption = script.VERIFED_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
                 # protect_content=True
             )
             await verify_user(client, userid, token)
