@@ -246,7 +246,7 @@ async def start(client, message):
             await message.reply_photo(
                 photo = photo2url,
                 caption ="<b>ʜᴇʏ {message.from_user.mention},ʏᴏᴜ ᴀʀᴇ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ !\ɴɴᴏᴡ ʏᴏᴜ ʜᴀᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇss ғᴏʀ ᴀʟʟ ᴍᴏᴠɪᴇs ᴛɪʟʟ ᴛᴏᴅᴀʏ ᴍɪᴅɴɪɢʜᴛ.</b>",
-                protect_content=True
+                # protect_content=True
             )
             await verify_user(client, userid, token)
         else:
@@ -328,7 +328,7 @@ async def start(client, message):
                 photo_url = "https://graph.org/file/10f9dac6eab3247e35831.jpg"
                 await message.reply_photo(
                     photo = photo_url,
-                    caption=script.VERIFY_TXT,
+                    caption=script.VERIFY_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
                     # protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn)
                 )
@@ -394,7 +394,7 @@ async def start(client, message):
                 photo_url = "https://graph.org/file/10f9dac6eab3247e35831.jpg"
                 await message.reply_photo(
                     photo = photo_url,
-                    caption=script.VERIFY_TXT,
+                    caption=script.VERIFY_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
                     # protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn)
                 )
@@ -456,7 +456,7 @@ async def start(client, message):
         photo_url = "https://graph.org/file/10f9dac6eab3247e35831.jpg"
         await message.reply_photo(
             photo = photo_url,
-            caption=script.VERIFY_TXT,
+            caption=script.VERIFY_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             # protect_content=True,
             reply_markup=InlineKeyboardMarkup(btn)
         )
