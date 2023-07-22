@@ -222,8 +222,8 @@ async def next_page(bot, query):
                     InlineKeyboardButton("𝐍𝐄𝐗𝐓 ➪", callback_data=f"next_{req}_{key}_{n_offset}")
                 ],
             )
-    if len(cap)>1024:
-        cap = cap.replace(temp.CAP.get(key), f"<b>Hey {page.from_user.mention}, Here are the results for your query {query}!</b>")
+    # if len(cap)>1024:
+    #     cap = cap.replace(temp.CAP.get(key), f"<b>Hey {page.from_user.mention}, Here are the results for your query {query}!</b>")
     try:
         await page.message.edit_text(
             text=cap,
