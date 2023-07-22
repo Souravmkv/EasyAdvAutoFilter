@@ -38,7 +38,6 @@ SECOND_SHORTENER = {}
 SMART_OPEN = '“'
 SMART_CLOSE = '”'
 START_CHAR = ('\'', '"', SMART_OPEN)
-CAP = {}
 
 # temp db for banned 
 class temp(object):
@@ -53,6 +52,7 @@ class temp(object):
     GETALL = {}
     SHORT = {}
     SETTINGS = {}
+    CAP = {}
 
 async def is_subscribed(bot, query):
     try:
