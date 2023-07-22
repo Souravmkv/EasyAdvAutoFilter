@@ -2127,9 +2127,9 @@ async def auto_filter(client, msg, spoll=False):
     #     InlineKeyboardButton("Hᴏᴡ ᴛᴏ Dᴏᴡɴʟᴏᴀᴅ⚡", url=TUTORIAL)
     #     ])
     else:
+        if len(cap)>1024:
+            cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
         btn = []
-    # if len(cap)>1024:
-    #     cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
         temp.CAP[key] = temp_cap
@@ -2191,6 +2191,8 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
+        cap = f"<b>Hᴇʏ {message.from_user.mention}, Hᴇʀᴇ ɪs Wʜᴀᴛ I Fᴏᴜɴᴅ Iɴ Mʏ Dᴀᴛᴀʙᴀsᴇ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ {search}.</b>"
+        temp_cap = cap
         if settings["button"] :
             cap = f"<b>Tʜᴇ Rᴇꜱᴜʟᴛꜱ Fᴏʀ ☞ {search}\n\nRᴇǫᴜᴇsᴛᴇᴅ Bʏ ☞ {message.from_user.mention}\n\nᴘᴏᴡᴇʀᴇᴅ ʙʏ ☞ : {message.chat.title} \n\n⚠️ ᴀꜰᴛᴇʀ 5 ᴍɪɴᴜᴛᴇꜱ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴅᴇʟᴇᴛᴇᴅ 🗑️\n\n</b>"
         else:
