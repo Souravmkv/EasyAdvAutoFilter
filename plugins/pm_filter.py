@@ -223,7 +223,7 @@ async def next_page(bot, query):
                 ],
             )
     # if len(cap)>1024:
-    #     cap = cap.replace(temp.CAP.get(key), f"<b>Hey {page.from_user.mention}, Here are the results for your query {query}!</b>")
+    cap = cap.replace(temp.CAP.get(key), f"<b>Hey {page.from_user.mention}, Here are the results for your query {query}!</b>")
     # try:
     #     await page.message.edit_text(
     #         text=cap,
@@ -2128,7 +2128,7 @@ async def auto_filter(client, msg, spoll=False):
     #     ])
     else:
         # if len(cap)>1024:
-        #     cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
+        cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
         btn = []
     if offset != "":
         req = message.from_user.id if message.from_user else 0
