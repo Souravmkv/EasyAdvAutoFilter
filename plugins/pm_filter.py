@@ -2131,9 +2131,6 @@ async def auto_filter(client, msg, spoll=False):
             cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
         btn = []
     if offset != "":
-        key = f"{message.chat.id}-{message.id}"
-        temp.CAP[key] = temp_cap
-        BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
         try:
             if settings['max_btn']:
