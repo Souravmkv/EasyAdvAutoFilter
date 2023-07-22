@@ -2295,7 +2295,7 @@ async def advantage_spell_chok(client, msg):
                 movielist += [movie.get('title') for movie in imdb_s]
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist))  # removing duplicates
-    if not movielist chat_type == enums.ChatType.PRIVATE:
+    if not movielist or chat_type == enums.ChatType.PRIVATE:
         reqst_gle = query.replace(" ", "+")
         button = [[
                    InlineKeyboardButton("🔍 𝐂𝐥𝐢𝐜𝐤 𝐓𝐨 𝐂𝐡𝐞𝐜𝐤 𝐒𝐩𝐞𝐥𝐥𝐢𝐧𝐠✅", url=f"https://www.google.com/search?q={reqst_gle}")
