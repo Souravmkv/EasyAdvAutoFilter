@@ -2128,8 +2128,8 @@ async def auto_filter(client, msg, spoll=False):
     #     ])
     else:
         btn = []
-    if len(cap)>1024:
-        cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
+    # if len(cap)>1024:
+    #     cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
         temp.CAP[key] = temp_cap
