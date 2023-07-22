@@ -43,6 +43,7 @@ BUTTONS0 = {}
 BUTTONS1 = {}
 BUTTONS2 = {}
 SPELL_CHECK = {}
+ADMIN_USRNM = "Mr_SPIDY"
 # ENABLE_SHORTLINK = ""
 
 @Client.on_message(filters.group | filters.private & filters.text & filters.incoming)
@@ -53,13 +54,13 @@ async def give_filter(client, message):
             settings = await get_settings(message.chat.id)
             try:
                 if settings['auto_ffilter']:
-                    await auto_filter(client, message)
+                    await advance_filter(client, message)
             except KeyError:
                 grpid = await active_connection(str(message.from_user.id))
                 await save_group_settings(grpid, 'auto_ffilter', True)
                 settings = await get_settings(message.chat.id)
                 if settings['auto_ffilter']:
-                    await auto_filter(client, message) 
+                    await advance_filter(client, message) 
     else: #a better logic to avoid repeated lines of code in auto_filter function
         search = message.text
         temp_files, temp_offset, total_results = await get_search_results(chat_id=message.chat.id, query=search.lower(), offset=0, filter=True)
@@ -1985,7 +1986,163 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
     await query.answer(MSG_ALRT)
 
-    
+async def advance_filter(client, msg, is_callback=False): #text type autofilter (without buttons)
+    if not is_callback: #if msg is not callback
+        settings = await get_settings(msg.chat.id) #fetch settings
+        if msg.text.startswith("/") or re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", msg.text): return #ignore cmds
+        if len(msg.text) < 100: #allow msgs only with characters less than 100
+            message = msg
+            search = message.text
+            chat_id = message.chat.id
+            files, offset, total = await get_search_results(chat_id, search.lower(), offset=0, filter=True) #search for files
+            if not files: #if not files are found
+                if settings["spell_check"]: #if spell check is enabled
+                    return await advantage_spell_chok(client, message)
+                else:
+                    if NO_RESULTS_MSG:
+                        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(message.from_user.id, message.from_user.mention, search)))
+                    return
+        else:
+            return
+    else:
+        message = msg.message.reply_to_message #msg will be callback
+        chat_id = message.chat.id
+        search, files, offset, total = is_callback
+        settings = await get_settings(chat_id) #fetch settings
+    if 'is_shortlink' in settings.keys(): #if shorlink is in settings
+        ENABLE_SHORTLINK = settings['is_shortlink'] #if found in settings
+    else:
+        await save_group_settings(message.chat.id, 'is_shortlink', False) #saving shortlink to db
+        ENABLE_SHORTLINK = False
+    imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None # fetch poster and caption from imdb if enabled
+    TEMPLATE = settings['template'] #fetch template (custom)
+    if imdb: #if imdb is not none
+        cap = TEMPLATE.format(
+            query=search,
+            title=imdb['title'],
+            votes=imdb['votes'],
+            aka=imdb["aka"],
+            seasons=imdb["seasons"],
+            box_office=imdb['box_office'],
+            localized_title=imdb['localized_title'],
+            kind=imdb['kind'],
+            imdb_id=imdb["imdb_id"],
+            cast=imdb["cast"],
+            runtime=imdb["runtime"],
+            countries=imdb["countries"],
+            certificates=imdb["certificates"],
+            languages=imdb["languages"],
+            director=imdb["director"],
+            writer=imdb["writer"],
+            producer=imdb["producer"],
+            composer=imdb["composer"],
+            cinematographer=imdb["cinematographer"],
+            music_team=imdb["music_team"],
+            distributors=imdb["distributors"],
+            release_date=imdb['release_date'],
+            year=imdb['year'],
+            genres=imdb['genres'],
+            poster=imdb['poster'],
+            plot=imdb['plot'],
+            rating=imdb['rating'],
+            url=imdb['url'],
+            **locals()
+        )
+    else: #if imdb is none
+        cap = f"<b>Hᴇʏ {message.from_user.mention}, Hᴇʀᴇ ɪs Wʜᴀᴛ I Fᴏᴜɴᴅ Iɴ Mʏ Dᴀᴛᴀʙᴀsᴇ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ {search}.</b>"
+    temp_cap = cap
+    i = 1
+    for file in files: #looping through each file
+        if ENABLE_SHORTLINK: # if shortlink is enabled
+            shorted = await get_shortlink(chat_id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+            cap+=f"<b>\n\n<a href={shorted}>{i}. [{get_size(file.file_size)}] {file.file_name}</a></b>"
+            i+=1
+        else:
+            link = f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
+            cap+=f"<b>\n\n<a href={link}>{i}. [{get_size(file.file_size)}] {file.file_name}</a></b>"
+            i+=1
+    btn = [[
+        InlineKeyboardButton("𝐉𝐎𝐈𝐍 𝐍𝐎𝐖", url="t.me/+gQokbbyJHa1iNDQ9") #btn
+    ]]
+    if len(cap)>1024:
+        cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
+    if offset != "": #if offset is not ""
+        key = f"{message.chat.id}-{message.id}"
+        temp.CAP[key] = temp_cap
+        BUTTONS[key] = search
+        req = message.from_user.id if message.from_user else 0
+        if settings['max_btn']:
+            btn.insert(0,
+                [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total)/10)}",callback_data="pages"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"nextadv_{req}_{key}_{offset}")]
+            )
+        else:
+            btn.insert(0,
+                [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total)/int(MAX_B_TN))}",callback_data="pages"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"nextadv_{req}_{key}_{offset}")]
+            )
+    else:
+        btn.insert(0,
+            [InlineKeyboardButton(text="𝐍𝐎 𝐌𝐎𝐑𝐄 𝐏𝐀𝐆𝐄𝐒 𝐀𝐕𝐀𝐈𝐋𝐀𝐁𝐋𝐄",callback_data="pages")]
+        )
+    # tut_link = await db.get_tutorial(message.chat.id)
+    # if tut_link and tut_link is not None:
+    #     btn.insert(0,
+    #         [InlineKeyboardButton(text="💡 𝐇𝐎𝐖 𝐓𝐎 𝐎𝐏𝐄𝐍 𝐋𝐈𝐍𝐊 💡", url=tut_link['link'])]
+    #     )
+    if imdb and imdb.get('poster'):
+        try:
+            hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.HTML)
+            try:
+                if settings['auto_delete']:
+                    await asyncio.sleep(600)
+                    await hehe.delete()
+                    await message.delete()
+            except KeyError:
+                await save_group_settings(message.chat.id, 'auto_delete', True)
+                await asyncio.sleep(600)
+                await hehe.delete()
+                await message.delete()
+        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            pic = imdb.get('poster')
+            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+            hmm = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.HTML)
+            try:
+                if settings['auto_delete']:
+                    await asyncio.sleep(600)
+                    await hmm.delete()
+                    await message.delete()
+            except KeyError:
+                await save_group_settings(message.chat.id, 'auto_delete', True)
+                await asyncio.sleep(600)
+                await hmm.delete()
+                await message.delete()
+        except Exception as e:
+            logger.exception(e)
+            fek = await message.reply_photo(photo=NOR_IMG, caption=cap, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.HTML)
+            try:
+                if settings['auto_delete']:
+                    await asyncio.sleep(600)
+                    await fek.delete()
+                    await message.delete()
+            except KeyError:
+                await save_group_settings(message.chat.id, 'auto_delete', True)
+                await asyncio.sleep(600)
+                await fek.delete()
+                await message.delete()
+    else:
+        fuk = await message.reply_photo(photo=NOR_IMG, caption=cap, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.HTML)
+        try:
+            if settings['auto_delete']:
+                await asyncio.sleep(600)
+                await fuk.delete()
+                await message.delete()
+        except KeyError:
+            await save_group_settings(message.chat.id, 'auto_delete', True)
+            await asyncio.sleep(600)
+            await fuk.delete()
+            await message.delete()
+    if is_callback:
+        await msg.message.delete()
+#--------------------------------------------------------------------------------------------------------  
 async def auto_filter(client, msg, spoll=False):
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     # reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2366,7 +2523,7 @@ async def manual_filters(client, message, text=False):
                             )
                             try:
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
+                                    await advance_filter(client, message)
                                     try:
                                         if settings['auto_delete']:
                                             await joelkb.delete()
@@ -2393,7 +2550,7 @@ async def manual_filters(client, message, text=False):
                                 await save_group_settings(grpid, 'auto_ffilter', True)
                                 settings = await get_settings(message.chat.id)
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
+                                    await advance_filter(client, message)
 
                         else:
                             button = eval(btn)
@@ -2407,7 +2564,7 @@ async def manual_filters(client, message, text=False):
                             )
                             try:
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
+                                    await advance_filter(client, message)
                                     try:
                                         if settings['auto_delete']:
                                             await joelkb.delete()
@@ -2434,7 +2591,7 @@ async def manual_filters(client, message, text=False):
                                 await save_group_settings(grpid, 'auto_ffilter', True)
                                 settings = await get_settings(message.chat.id)
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
+                                    await advance_filter(client, message)
 
                     elif btn == "[]":
                         joelkb = await client.send_cached_media(
@@ -2446,7 +2603,7 @@ async def manual_filters(client, message, text=False):
                         )
                         try:
                             if settings['auto_ffilter']:
-                                await auto_filter(client, message)
+                                await advance_filter(client, message)
                                 try:
                                     if settings['auto_delete']:
                                         await joelkb.delete()
@@ -2473,7 +2630,7 @@ async def manual_filters(client, message, text=False):
                             await save_group_settings(grpid, 'auto_ffilter', True)
                             settings = await get_settings(message.chat.id)
                             if settings['auto_ffilter']:
-                                await auto_filter(client, message)
+                                await advance_filter(client, message)
 
                     else:
                         button = eval(btn)
@@ -2485,7 +2642,7 @@ async def manual_filters(client, message, text=False):
                         )
                         try:
                             if settings['auto_ffilter']:
-                                await auto_filter(client, message)
+                                await advance_filter(client, message)
                                 try:
                                     if settings['auto_delete']:
                                         await joelkb.delete()
@@ -2512,7 +2669,7 @@ async def manual_filters(client, message, text=False):
                             await save_group_settings(grpid, 'auto_ffilter', True)
                             settings = await get_settings(message.chat.id)
                             if settings['auto_ffilter']:
-                                await auto_filter(client, message)
+                                await advance_filter(client, message)
 
                 except Exception as e:
                     logger.exception(e)
@@ -2549,7 +2706,7 @@ async def global_filters(client, message, text=False):
                                 settings = await get_settings(message.chat.id)
                                 try:
                                     if settings['auto_ffilter']:
-                                        await auto_filter(client, message)
+                                        await advance_filter(client, message)
                                         try:
                                             if settings['auto_delete']:
                                                 await joelkb.delete()
@@ -2576,7 +2733,7 @@ async def global_filters(client, message, text=False):
                                     await save_group_settings(grpid, 'auto_ffilter', True)
                                     settings = await get_settings(message.chat.id)
                                     if settings['auto_ffilter']:
-                                        await auto_filter(client, message) 
+                                        await advance_filter(client, message) 
                             else:
                                 try:
                                     if settings['auto_delete']:
@@ -2602,7 +2759,7 @@ async def global_filters(client, message, text=False):
                                 settings = await get_settings(message.chat.id)
                                 try:
                                     if settings['auto_ffilter']:
-                                        await auto_filter(client, message)
+                                        await advance_filter(client, message)
                                         try:
                                             if settings['auto_delete']:
                                                 await joelkb.delete()
@@ -2629,7 +2786,7 @@ async def global_filters(client, message, text=False):
                                     await save_group_settings(grpid, 'auto_ffilter', True)
                                     settings = await get_settings(message.chat.id)
                                     if settings['auto_ffilter']:
-                                        await auto_filter(client, message) 
+                                        await advance_filter(client, message) 
                             else:
                                 try:
                                     if settings['auto_delete']:
@@ -2653,7 +2810,7 @@ async def global_filters(client, message, text=False):
                             settings = await get_settings(message.chat.id)
                             try:
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
+                                    await advance_filter(client, message)
                                     try:
                                         if settings['auto_delete']:
                                             await joelkb.delete()
@@ -2680,7 +2837,7 @@ async def global_filters(client, message, text=False):
                                 await save_group_settings(grpid, 'auto_ffilter', True)
                                 settings = await get_settings(message.chat.id)
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message) 
+                                    await advance_filter(client, message) 
                         else:
                             try:
                                 if settings['auto_delete']:
@@ -2705,7 +2862,7 @@ async def global_filters(client, message, text=False):
                             settings = await get_settings(message.chat.id)
                             try:
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
+                                    await advance_filter(client, message)
                                     try:
                                         if settings['auto_delete']:
                                             await joelkb.delete()
@@ -2732,7 +2889,7 @@ async def global_filters(client, message, text=False):
                                 await save_group_settings(grpid, 'auto_ffilter', True)
                                 settings = await get_settings(message.chat.id)
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message) 
+                                    await advance_filter(client, message) 
                         else:
                             try:
                                 if settings['auto_delete']:
