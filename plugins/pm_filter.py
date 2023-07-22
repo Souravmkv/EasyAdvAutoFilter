@@ -2238,6 +2238,7 @@ async def auto_filter(client, msg, spoll=False):
 
 async def advantage_spell_chok(client, msg):
     mv_rqst = msg.text
+    chat_type = msg.chat.type
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)
     settings = await get_settings(msg.chat.id)
@@ -2294,7 +2295,7 @@ async def advantage_spell_chok(client, msg):
                 movielist += [movie.get('title') for movie in imdb_s]
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist))  # removing duplicates
-    if not movielist:
+    if not movielist chat_type == enums.ChatType.PRIVATE:
         reqst_gle = query.replace(" ", "+")
         button = [[
                    InlineKeyboardButton("🔍 𝐂𝐥𝐢𝐜𝐤 𝐓𝐨 𝐂𝐡𝐞𝐜𝐤 𝐒𝐩𝐞𝐥𝐥𝐢𝐧𝐠✅", url=f"https://www.google.com/search?q={reqst_gle}")
@@ -2312,7 +2313,7 @@ async def advantage_spell_chok(client, msg):
         await k.delete()
         return
     SPELL_CHECK[msg.id] = movielist
-    # movielist = movielist[:5]
+    movielist = movielist[:5]
     btn = [[
         InlineKeyboardButton(
             text=movie.strip(),
