@@ -224,22 +224,22 @@ async def next_page(bot, query):
             )
     # if len(cap)>1024:
     #     cap = cap.replace(temp.CAP.get(key), f"<b>Hey {page.from_user.mention}, Here are the results for your query {query}!</b>")
-    try:
-        await page.message.edit_text(
-            text=cap,
-            parse_mode=enums.ParseMode.HTML
-        )
-        await page.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(btn)
-        )
-    except MessageNotModified:
-        pass
-    except FloodWait as e:
-        await page.answer(f"Got FloodWait ! Wait for {e.value} seconds...", show_alert=True)
-        await asyncio.sleep(e.value)
-        await page.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(btn)
-        )
+    # try:
+    #     await page.message.edit_text(
+    #         text=cap,
+    #         parse_mode=enums.ParseMode.HTML
+    #     )
+    #     await page.edit_message_reply_markup(
+    #         reply_markup=InlineKeyboardMarkup(btn)
+    #     )
+    # except MessageNotModified:
+    #     pass
+    # except FloodWait as e:
+    #     await page.answer(f"Got FloodWait ! Wait for {e.value} seconds...", show_alert=True)
+    #     await asyncio.sleep(e.value)
+    #     await page.edit_message_reply_markup(
+    #         reply_markup=InlineKeyboardMarkup(btn)
+    #     )
     # if ENABLE_SHORTLINK == True:
         # btn.insert(0, [
         #     InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
