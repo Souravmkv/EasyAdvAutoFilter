@@ -2127,8 +2127,8 @@ async def auto_filter(client, msg, spoll=False):
     #     InlineKeyboardButton("Hᴏᴡ ᴛᴏ Dᴏᴡɴʟᴏᴀᴅ⚡", url=TUTORIAL)
     #     ])
     else:
-        if len(cap)>1024:
-            cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
+        # if len(cap)>1024:
+        #     cap = cap.replace(temp_cap, f"<b>Hey {message.from_user.mention}, Here are the results for your query {search} !</b>")
         btn = []
     if offset != "":
         req = message.from_user.id if message.from_user else 0
