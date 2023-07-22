@@ -107,7 +107,7 @@ async def next_page(bot, query):
     try:
         n_offset = int(n_offset)
     except:
-        n_offset = 0te
+        n_offset = 0
 
     if not files:
         return
