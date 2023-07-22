@@ -2196,7 +2196,7 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-            await m.delete()
+            await dlt.delete()
             try:
                 if settings['auto_delete']:
                     await asyncio.sleep(300)
@@ -2212,7 +2212,7 @@ async def auto_filter(client, msg, spoll=False):
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
             #m=await message.reply_text("🔎") 
             hmm = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-            await m.delete()
+            await dlt.delete()
             try:
                 if settings['auto_delete']:
                     await asyncio.sleep(300)
@@ -2227,7 +2227,7 @@ async def auto_filter(client, msg, spoll=False):
             logger.exception(e)
             #m=await message.reply_text("🔎") 
             fek = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn))
-            await m.delete()
+            await dlt.delete()
             try:
                 if settings['auto_delete']:
                     await asyncio.sleep(300)
