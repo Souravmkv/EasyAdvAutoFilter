@@ -21,7 +21,7 @@ BOT_TOKEN = environ.get('BOT_TOKEN', "")
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
-PICS = (environ.get('PICS', '')).split()
+PICS = (environ.get('PICS', 'https://graph.org/file/2d11809e579e0e0fc6c82.jpg https://graph.org/file/1335e15b6af8c8de2ef70.jpg https://graph.org/file/5ddecd7b2fb796afb9fd1.jpg https://graph.org/file/eecb1e9b18ba071f8e651.jpg https://graph.org/file/d27b45d357f06063484f1.jpg https://graph.org/file/e5fd22a97b6dbb3e6f356.jpg https://graph.org/file/390808be0f3370425242e.jpg https://graph.org/file/6c054b0eb9f31dd1814ab.jpg https://graph.org/file/8254c9edc3aeb24fc1e9c.jpg https://graph.org/file/8ee260621bb1d31e5d7cc.jpg https://graph.org/file/1356905fa52fe4aa3ba7d.jpg https://graph.org/file/b5a888c0935289e9edf8d.jpg https://graph.org/file/da7051f180f52977d91d5.jpg https://graph.org/file/c4e29fbbfacd249d0f737.jpg https://graph.org/file/5b2f8daa404e315958c68.jpg https://graph.org/file/3264d2637eda744390199.jpg')).split()
 NOR_IMG = environ.get("NOR_IMG", "https://te.legra.ph/file/a27dc8fe434e6b846b0f8.jpg")
 MELCOW_VID = environ.get("MELCOW_VID", "https://te.legra.ph/file/6f55d902f9bf2d0afd4bb.mp4")
 SPELL_IMG = environ.get("SPELL_IMG", "https://te.legra.ph/file/15c1ad448dfe472a5cbb8.jpg")
@@ -50,7 +50,7 @@ DATABASE_NAME = environ.get('DATABASE_NAME', "YourDemandZone")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'YourDemandZone')
 
 # Others
-VERIFY = bool(environ.get('VERIFY', True))
+VERIFY = bool(environ.get('VERIFY', False))
 SHORTLINK_URL = environ.get('SHORTLINK_URL', 'urlshortx.com')
 SHORTLINK_API = environ.get('SHORTLINK_API', 'aacda989a636df49b60ebd363b56dd5e82095eec')
 SECOND_SHORTLINK_URL = environ.get('SECOND_SHORTLINK_URL', 'urlshortx.com')
