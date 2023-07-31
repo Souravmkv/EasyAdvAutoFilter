@@ -13,7 +13,7 @@ from Script import script
 import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
-from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_CHAT_ID, CUSTOM_FILE_CAPTION, MSG_ALRT, PICS, AUTH_GROUPS, P_TTI_SHOW_OFF, GRP_LNK, CHNL_LNK, NOR_IMG, LOG_CHANNEL, SPELL_IMG, MAX_B_TN, IMDB, \
+from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_CHAT_ID, CUSTOM_FILE_CAPTION, MSG_ALRT, PICS, AUTH_GROUPS, P_TTI_SHOW_OFF, GRP_LNK, CHNL_LNK, SPRT_CHNL, NOR_IMG, LOG_CHANNEL, SPELL_IMG, MAX_B_TN, IMDB, \
     SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, TUTORIAL, HOW_TO_VERIFY, REQST_CHANNEL, IS_TUTORIAL, LANGUAGES, SEASONS, SUPPORT_CHAT, PREMIUM_USER
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters, enums
@@ -1818,11 +1818,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
     elif query.data == "chnl_info":
             btn = [[
-                    InlineKeyboardButton("🍀 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🍀", url=GRP_LNK)
+                    InlineKeyboardButton("🍀 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🍀", url= GRP_LNK)
                 ],[
-                    InlineKeyboardButton("🍂 Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ Gʀᴏᴜᴘ 🍂", url="https://t.me/YourDemandSupport")
+                    InlineKeyboardButton("🍂 Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ Gʀᴏᴜᴘ 🍂", url=SPRT_CHNL)
                 ],[
-                    InlineKeyboardButton("🌼 Mᴏᴠɪᴇ Cʜᴀɴɴᴇʟ🌼", url="t.me/YourDemand3")
+                    InlineKeyboardButton("🌼 Mᴏᴠɪᴇ Cʜᴀɴɴᴇʟ🌼", url='https://t.me/YourDemand3')
                 ],[
                     InlineKeyboardButton("🥀 Mᴀɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ 🥀", url=CHNL_LNK)
                 ],[
@@ -2324,7 +2324,7 @@ async def advantage_spell_chok(client, msg):
             callback_data=f"spolling#{reqstr1}#{k}",
         )
     ] for k, movie in enumerate(movielist)]
-    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    btn.append([InlineKeyboardButton(text="✘Close✘", callback_data=f'spol#{reqstr1}#close_spellcheck')])
     spell_check_del = await msg.reply_photo(
         photo=(SPELL_IMG),
         caption=(script.CUDNT_FND.format(mv_rqst)),
