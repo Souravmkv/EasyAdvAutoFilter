@@ -24,12 +24,12 @@
         },
         "API_ID": {
             "description": "Get this value from https://my.telegram.org",
-            "value":"27846542"
+            "value":"27846542",
             "required": true
         },
         "API_HASH": {
             "description": "Get this value from https://my.telegram.org",
-            "value":"75be2951252a1616bcf31aa45bf62d24"
+            "value":"75be2951252a1616bcf31aa45bf62d24",
             "required": true
         },
         "CHANNELS": {
