@@ -963,7 +963,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                     InlineKeyboardButton('📋 Rᴇǫᴜᴇsᴛ Gʀᴏᴜᴘ', url=SPRT_CHNL),
                                     InlineKeyboardButton('🔔 Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                                 ],[
-                                    InlineKeyboardButton("🌿 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🥀", url="telegram.me/YDMovieZone")
+                                    InlineKeyboardButton("🌿 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🥀", url="t.me/saurav7even")
                                 ]
                                 ]
                             )
@@ -1305,7 +1305,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                  InlineKeyboardButton('Jᴏɪɴ Cʜᴀɴɴᴇʟ', url=link.invite_link),
                  InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
                ],[
-                 InlineKeyboardButton("🌿 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🥀", url="telegram.me/YDMovieZone")
+                 InlineKeyboardButton("🌿 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🥀", url="t.me/saurav7even")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
@@ -1330,7 +1330,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                  InlineKeyboardButton('Jᴏɪɴ Cʜᴀɴɴᴇʟ', url=link.invite_link),
                  InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
                ],[
-                 InlineKeyboardButton("🌿 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🥀", url="telegram.me/YDMovieZone")
+                 InlineKeyboardButton("🌿 Mᴏᴠɪᴇ Sᴇᴀʀᴄʜ Gʀᴏᴜᴘ 🥀", url="t.me/saurav7even")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
@@ -1383,7 +1383,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
                     InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('💸 Eᴀʀɴ Mᴏɴᴇʏ', callback_data="shortlink_info"),
+                    InlineKeyboardButton('😎 ᴅᴇᴠᴇʟᴏᴘᴇʀ', url="t.me/saurav7even"),
                     InlineKeyboardButton('🎭 Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url=GRP_LNK)
                 ],[
                     InlineKeyboardButton('⚠️ Hᴇʟᴘ', callback_data='help'),
