@@ -15,8 +15,8 @@
       "index",
       "inline"
     ],
-    "website": "https://spidy.eu.org",
-    "repository": "https://github.com",
+    "website": "https://github.com/Souravmkv/EasyAdvAutoFilter",
+    "repository": "https://github.com/Souravmkv/EasyAdvAutoFilter",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
@@ -81,7 +81,7 @@
     "formation": {
         "worker": {
             "quantity": 1,
-            "size": "eco"
+            "size": "free"
         }
     }
 }
